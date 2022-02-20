@@ -1,44 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Frontend Mentor | E-commerce product page</title>
+  </head>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | E-commerce product page</title>
+  <body>
+    <section id="header">
+      <ul class="navigation">
+        <li class="logo">
+          <a href=""><img src="images/logo.svg" alt="" /></a>
+        </li>
+        <li class="item"><a href="">Collections</a></li>
+        <li class="item"><a href="">Men</a></li>
+        <li class="item"><a href="">Women</a></li>
+        <li class="item"><a href="">About</a></li>
+        <li class="item"><a href="">Contact</a></li>
+        <li class="cart">
+          <img
+            class="cart-icon"
+            onclick="showCart()"
+            src="images/icon-cart.svg"
+            alt=""
+          />
+          <div class="mini-cart-content" style="display: none">
+            <strong class="cart-title">Cart</strong>
+            <div id="mini-cart-products-list">
+              <strong class="cart-is-empty">Your cart is empty.</strong>
+            </div>
+          </div>
+        </li>
+        <li class="profile-avatar">
+          <a href=""><img src="images/image-avatar.png" alt="" /></a>
+        </li>
+      </ul>
+    </section>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <section id="main">
+      <div class="product-detail">
+        <div class="gallery">
+          <img
+            id="main-product-image"
+            class="main-product-image"
+            onclick="openGallery()"
+            src="images/image-product-1.jpg"
+            width="445px"
+            alt=""
+          />
+          <div class="product-thumbnails">
+            <img
+              id="thumbnail-1"
+              onclick="changeMainProductImage(event)"
+              src="images/image-product-1-thumbnail.jpg"
+              alt=""
+            />
+            <img
+              id="thumbnail-2"
+              onclick="changeMainProductImage(event)"
+              src="images/image-product-2-thumbnail.jpg"
+              alt=""
+            />
+            <img
+              id="thumbnail-3"
+              onclick="changeMainProductImage(event)"
+              src="images/image-product-3-thumbnail.jpg"
+              alt=""
+            />
+            <img
+              id="thumbnail-4"
+              onclick="changeMainProductImage(event)"
+              src="images/image-product-4-thumbnail.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+        <!-- MODAL GALLERY -->
+        <div
+          id="gallery-modal"
+          style="display: none"
+          class="gallery-modal"
+          onclick="closeGallery(event)"
+        >
+          <div class="modal-container">
+            <img
+              id="gallery-close-button"
+              width="22px"
+              onmouseover="iconCloseOrange(this)"
+              onmouseout="iconCloseWhite(this)"
+              src="images/icon-close-white.svg"
+              alt=""
+            />
+            <div class="main-modal-image-container">
+              <img
+                class="gallery-button"
+                src="images/icon-previous.svg"
+                alt=""
+              />
+              <img
+                id="main-modal-gallery-image"
+                class="main-modal-gallery-image"
+                src="images/image-product-1.jpg"
+                height="550px"
+                alt=""
+              />
+              <img class="gallery-button" src="images/icon-next.svg" alt="" />
+            </div>
+            <div class="product-thumbnails">
+              <img
+                id="thumbnail-1"
+                onclick="changeMainProductImage(event)"
+                src="images/image-product-1-thumbnail.jpg"
+                alt=""
+              />
+              <img
+                id="thumbnail-2"
+                onclick="changeMainProductImage(event)"
+                src="images/image-product-2-thumbnail.jpg"
+                alt=""
+              />
+              <img
+                id="thumbnail-3"
+                onclick="changeMainProductImage(event)"
+                src="images/image-product-3-thumbnail.jpg"
+                alt=""
+              />
+              <img
+                id="thumbnail-4"
+                onclick="changeMainProductImage(event)"
+                src="images/image-product-4-thumbnail.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
 
-  Collections
-  Men
-  Women
-  About
-  Contact
+        <div class="description">
+          <strong>SNEAKER COMPANY</strong>
+          <h1>Fall Limited Edition Sneakers</h1>
+          <p>
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole, they’ll withstand everything
+            the weather can offer.
+          </p>
+          <div class="price-now">
+            <span class="price">$125.00</span>
+            <span class="discount-percentage">50%</span>
+          </div>
+          <span class="price-before">$250.00</span>
+          <div class="container">
+            <form>
+              <div class="product-quantity">
+                <input
+                  class="product-quantity-button minus"
+                  onclick="minusQuantity()"
+                  type="button"
+                />
+                <input
+                  class="product-quantity-number"
+                  type="number"
+                  value="1"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                />
 
-  Sneaker Company
-
-  Fall Limited Edition Sneakers
-
-  These low-profile sneakers are your perfect casual wear companion. Featuring a 
-  durable rubber outer sole, they’ll withstand everything the weather can offer.
-
-  $125.00
-  50%
-  $250.00
-
-  0
-  Add to cart
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+                <input
+                  class="product-quantity-button plus"
+                  onclick="plusQuantity()"
+                  type="button"
+                />
+              </div>
+            </form>
+            <a class="add-to-cart" onclick="addToCart()"
+              ><img
+                width="22"
+                height="20"
+                src="images/icon-cart-white.svg"
+                alt=""
+              />Add to cart</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
