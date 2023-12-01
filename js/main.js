@@ -17,7 +17,6 @@ function showCart() {
 }
 
 window.addEventListener("mouseup", function (event) {
-  console.log("ssss")
   if (
     !cartContent.contains(event.target) &&
     !cartIcon.contains(event.target) &&
@@ -99,25 +98,44 @@ const mainProductImage = document.getElementById("main-product-image")
 const mainProductModalImage = document.getElementById(
   "main-modal-gallery-image"
 )
+let imageNumer = mainProductImage.src
+  .split("-")
+  .slice(-1)
+  .join("")
+  .split(".")[0]
 
 function changeMainProductImage(event) {
   const thumbnailProductImageNumber = event.target.id.split("-")[1]
 
-  if (galleryModal.style.display == "none") {
-    mainProductImage.src = `images/image-product-${thumbnailProductImageNumber}.jpg`
-    mainProductModalImage.src = `images/image-product-${thumbnailProductImageNumber}.jpg`
-  } else {
-    mainProductModalImage.src = `images/image-product-${thumbnailProductImageNumber}.jpg`
+  mainProductImage.src = `images/image-product-${thumbnailProductImageNumber}.jpg`
+  mainProductModalImage.src = `images/image-product-${thumbnailProductImageNumber}.jpg`
+}
+
+function nextImage() {
+  imageNumer++
+  if (imageNumer > 4) {
+    imageNumer = 1
   }
+  mainProductImage.src = `images/image-product-${imageNumer}.jpg`
+  mainProductModalImage.src = `images/image-product-${imageNumer}.jpg`
+}
+
+function previousImage() {
+  imageNumer--
+  if (imageNumer < 1) {
+    imageNumer = 4
+  }
+  mainProductImage.src = `images/image-product-${imageNumer}.jpg`
+  mainProductModalImage.src = `images/image-product-${imageNumer}.jpg`
 }
 
 function openGallery() {
   galleryModal.style.display = "block"
 }
+const galleryCloseButton = document.getElementById("gallery-close-button")
 
 function closeGallery(event) {
   const modalContent = document.getElementsByClassName("modal-container")[0]
-  const galleryCloseButton = document.getElementById("gallery-close-button")
 
   if (
     !modalContent.contains(event.target) ||
@@ -128,10 +146,49 @@ function closeGallery(event) {
   }
 }
 
-function iconCloseOrange(icon) {
-  icon.src = "../images/icon-close-orange.svg"
+function iconCloseOrange() {
+  galleryCloseButton.src = "images/icon-close-orange.svg"
 }
 
-function iconCloseWhite(icon) {
-  icon.src = "../images/icon-close-white.svg"
+function iconCloseWhite() {
+  galleryCloseButton.src = "images/icon-close-white.svg"
+}
+
+function openHamburgerMenu() {
+  const hamburgerMenu = document.getElementById("hamburger-menu")
+  const hamburgerMenuBackground = document.getElementById(
+    "hamburger-menu-background"
+  )
+  if (hamburgerMenu.style.display == "none") {
+    hamburgerMenu.style.display = "block"
+    hamburgerMenuBackground.style.display = "block"
+    document.body.style.overflowY = "hidden"
+    document.body.style.overflowX = "hidden"
+  } else {
+    hamburgerMenu.style.display = "none"
+    hamburgerMenuBackground.style.display = "none"
+    document.body.style.overflowY = "visible"
+    document.body.style.overflowX = "visible"
+  }
+}
+
+function closeHamburgerMenu(event) {
+  const hamburgerMenuContent = document.getElementById("hamburger-menu")
+  const hamburgerMenuCloseIcon = document.getElementById(
+    "hamburger-menu-close-icon"
+  )
+  const hamburgerMenuBackground = document.getElementById(
+    "hamburger-menu-background"
+  )
+
+  console.log(hamburgerMenuBackground.contains(event.target))
+  if (
+    hamburgerMenuBackground.contains(event.target) ||
+    hamburgerMenuCloseIcon.contains(event.target)
+  ) {
+    hamburgerMenuContent.style.display = "none"
+    hamburgerMenuBackground.style.display = "none"
+    document.body.style.overflowY = "visible"
+    document.body.style.overflowX = "visible"
+  }
 }

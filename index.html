@@ -16,13 +16,47 @@
       href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="css/main.css" />
     <title>Frontend Mentor | E-commerce product page</title>
   </head>
 
   <body>
     <section id="header">
+      <div
+        id="hamburger-menu-background"
+        onclick="closeHamburgerMenu(event)"
+        style="display: none"
+      ></div>
+
+      <div id="hamburger-menu" style="display: none">
+        <ul>
+          <li class="hamburger-menu-close-icon-container">
+            <a
+              href="#"
+              onclick="closeHamburgerMenu(event)"
+              id="hamburger-menu-close-icon"
+            >
+              <img src="images/icon-close-white.svg" alt="" />
+            </a>
+          </li>
+          <li class="item"><a href="">Collections</a></li>
+          <li class="item"><a href="">Men</a></li>
+          <li class="item"><a href="">Women</a></li>
+          <li class="item"><a href="">About</a></li>
+          <li class="item"><a href="">Contact</a></li>
+        </ul>
+      </div>
       <ul class="navigation">
+        <li class="hamburger-icon">
+          <a onclick="openHamburgerMenu()"><i></i></a>
+        </li>
         <li class="logo">
           <a href=""><img src="images/logo.svg" alt="" /></a>
         </li>
@@ -55,11 +89,23 @@
       <div class="product-detail">
         <div class="gallery">
           <img
+            class="gallery-button previous"
+            src="images/icon-previous.svg"
+            onclick="previousImage()"
+            alt=""
+          />
+          <img
             id="main-product-image"
             class="main-product-image"
             onclick="openGallery()"
             src="images/image-product-1.jpg"
             width="445px"
+            alt=""
+          />
+          <img
+            class="gallery-button next"
+            src="images/icon-next.svg"
+            onclick="nextImage()"
             alt=""
           />
           <div class="product-thumbnails">
@@ -100,8 +146,8 @@
             <img
               id="gallery-close-button"
               width="22px"
-              onmouseover="iconCloseOrange(this)"
-              onmouseout="iconCloseWhite(this)"
+              onmouseover="iconCloseOrange()"
+              onmouseout="iconCloseWhite()"
               src="images/icon-close-white.svg"
               alt=""
             />
@@ -109,6 +155,7 @@
               <img
                 class="gallery-button"
                 src="images/icon-previous.svg"
+                onclick="previousImage()"
                 alt=""
               />
               <img
@@ -118,7 +165,12 @@
                 height="550px"
                 alt=""
               />
-              <img class="gallery-button" src="images/icon-next.svg" alt="" />
+              <img
+                class="gallery-button"
+                src="images/icon-next.svg"
+                onclick="nextImage()"
+                alt=""
+              />
             </div>
             <div class="product-thumbnails">
               <img
@@ -157,11 +209,13 @@
             Featuring a durable rubber outer sole, they’ll withstand everything
             the weather can offer.
           </p>
-          <div class="price-now">
-            <span class="price">$125.00</span>
-            <span class="discount-percentage">50%</span>
+          <div class="price-container">
+            <div class="price-now">
+              <span class="price">$125.00</span>
+              <span class="discount-percentage">50%</span>
+            </div>
+            <span class="price-before">$250.00</span>
           </div>
-          <span class="price-before">$250.00</span>
           <div class="container">
             <form>
               <div class="product-quantity">
