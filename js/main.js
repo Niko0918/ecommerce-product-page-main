@@ -65,11 +65,13 @@ function addToCart() {
   if (parseInt(inputQuantity) > 0) {
     document.getElementById("mini-cart-products-list").innerHTML = `<ul>
     <li>
+    <div>
       <img
         class="mini-cart-thumbnail"
         src="images/image-product-1-thumbnail.jpg"
         alt=""
       />
+      </div>
       <div>
         <span style="margin-bottom: 5px;">Fall Limited Edition Sneakers</span>
         <div class="mini-cart-product-price-container">
@@ -130,7 +132,9 @@ function previousImage() {
 }
 
 function openGallery() {
-  galleryModal.style.display = "block"
+  if (window.screen.width > 630) {
+    galleryModal.style.display = "block"
+  }
 }
 const galleryCloseButton = document.getElementById("gallery-close-button")
 
